@@ -25,7 +25,8 @@ class UserFactory(factory.django.DjangoModelFactory):
       if create:
         user.save()
     return user
-  
+
+
 class PostFactory(factory.django.DjangoModelFactory):
   title = factory.LazyAttribute(lambda x: faker.sentence())
   created_on = factory.LazyAttribute(lambda x: now())

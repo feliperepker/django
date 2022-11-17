@@ -1,7 +1,14 @@
-from django.http import HttpResponse
+
 from django.views import generic
+
+from mysite.blog.models import Post
 
 
 class PostView(generic.View):
-    def get(self, request, *args, **kwargs):
-        return HttpResponse('Hello World')
+    queryset = Post.objects.filter(status=1).order_by('-created_on')
+    template_name = "index.html"
+
+
+class PostDetail(generic.DetailView):
+    model = Post
+    template_name = "post_detail.html"
